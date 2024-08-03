@@ -1,6 +1,6 @@
-const PrimaryRoundedButton = ({text}) => {
+const PrimaryRoundedButton = ({text, onClick, style}) => {
   return (
-    <button type="submit" className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-6 border border-gray-400 rounded-full shadow w-fit">
+    <button onClick={onClick || null} type="submit" className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-6 border border-gray-400 rounded-full shadow w-fit" style={style || {}}>
       {text}
     </button>
   );

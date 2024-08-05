@@ -1,5 +1,5 @@
 const NotificationBox = ({ message, type }) => {
-  if (type === "error") {
+  if (type === 'error') {
     return (
       <div className="fixed right-0 top-0 m-2 rounded-xl border border-secondary-50 bg-white p-4 text-sm shadow-lg min-w-[400px]">
         <button className="ttop-4 absolute right-4 ml-auto text-secondary-500 hover:text-secondary-900">
@@ -33,8 +33,8 @@ const NotificationBox = ({ message, type }) => {
           </div>
         </div>
       </div>
-    );
-  } else if (type === "success") {
+    )
+  } else if (type === 'success') {
     return (
       <div className="fixed right-0 top-0 m-2 rounded-xl border border-secondary-50 bg-white p-4 text-sm shadow-lg min-w-[400px]">
         <button className="ttop-4 absolute right-4 ml-auto text-secondary-500 hover:text-secondary-900">
@@ -68,8 +68,8 @@ const NotificationBox = ({ message, type }) => {
           </div>
         </div>
       </div>
-    );
+    )
   }
-};
+}
 
-export default NotificationBox;
+export default NotificationBox

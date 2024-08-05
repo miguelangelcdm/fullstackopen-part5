@@ -1,4 +1,4 @@
-const InputForm = ({ text, name, type="text", value, onChange }) => {
+const InputForm = ({ text, name, type='text', value, onChange }) => {
   return (
     <div className="flex gap-2 flex-col items-start">
       <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
@@ -12,7 +12,7 @@ const InputForm = ({ text, name, type="text", value, onChange }) => {
         onChange={onChange}
       />
     </div>
-  );
-};
+  )
+}
 
-export default InputForm;
+export default InputForm

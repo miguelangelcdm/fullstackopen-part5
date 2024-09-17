@@ -14,7 +14,7 @@ test('renders a blog title and author, but not its url or likes by default', () 
     user: { username: 'root' }
   }
   const user = { username: 'root' }
-  render(<Blog blog={blog} user = {user}/>)
+  render(<Blog blog={blog} user={user} />)
 
   const title = screen.getByText('fronttest2')
   const author = screen.getByText('Myself')
@@ -48,7 +48,7 @@ test('renders blog URL and likes when the "show" button is clicked', async () =>
 });
 
 // 5.15:
-test('calls the handleLike function twice when the like button is clicked twice', async () => { 
+test('calls the handleLike function twice when the like button is clicked twice', async () => {
   const handleLikeMock = vi.fn();
 
   const blog = {
@@ -61,7 +61,7 @@ test('calls the handleLike function twice when the like button is clicked twice'
   const setBlogsMock = vi.fn();
 
   const { getByText } = render(<Blog blog={blog} setBlogs={setBlogsMock} user={blog.user} handleLike={handleLikeMock} />);
-  
+
   const showButton = screen.getByText("show");
   await userEvent.click(showButton);
 
@@ -70,14 +70,14 @@ test('calls the handleLike function twice when the like button is clicked twice'
   await userEvent.click(likeButton);
 
   expect(handleLikeMock).toHaveBeenCalledTimes(2);
- })
+})
 
 // 5.16
-test('new blog is created while testing inputs', async () => { 
+test('new blog is created while testing inputs', async () => {
   const createBlog = vi.fn()
   const user = userEvent.setup()
 
-  render(<BlogForm createBlog={createBlog}/>)
+  render(<BlogForm createBlog={createBlog} />)
   const title = screen.getByLabelText('Title')
   const author = screen.getByLabelText('Author')
   const url = screen.getByLabelText('URL')
@@ -94,4 +94,4 @@ test('new blog is created while testing inputs', async () => {
   expect(createBlog.mock.calls[0][0].url).toBe('url of a test blog')
 
 
- })
+})

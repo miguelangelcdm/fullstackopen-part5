@@ -107,8 +107,6 @@ const App = () => {
     }
   };
 
-
-
   return (
     <div className="bg-slate-600 p-4 flex flex-col gap-4">
       <h1 className="text-xl">blogs</h1>

@@ -8,6 +8,29 @@ BlogsRouter.get('/', async (request, response) => {
   response.json(blogs)
 })
 
+// BlogsRouter.post('/', middleware.userExtractor, async (request, response) => {
+//   const body = request.body
+//   let user = request.user
+
+//   if (!user) {
+//     user = await User.findOne()
+//   }
+//   const blog = new Blog({
+//     title: body.title,
+//     url: body.url,
+//     author: body.author,
+//     likes : body.likes || 0,
+//     user: user
+//   })
+
+//   const savedBlog = await blog.save()
+//   if (user) {
+//     user.blogs = user.blogs.concat(savedBlog._id)
+//     await user.save()
+//   }
+
+//   response.status(201).json(savedBlog)
+// })
 BlogsRouter.post('/', middleware.userExtractor, async (request, response) => {
   const body = request.body
   let user = request.user
@@ -15,19 +38,25 @@ BlogsRouter.post('/', middleware.userExtractor, async (request, response) => {
   if (!user) {
     user = await User.findOne()
   }
+
   const blog = new Blog({
     title: body.title,
     url: body.url,
     author: body.author,
-    user: user.id
+    likes: body.likes || 0,
+    user: user._id // Save the reference to the user's ID
   })
 
   const savedBlog = await blog.save()
+
+  const populatedBlog = await Blog.findById(savedBlog._id).populate('user', 'username name id')
+
   if (user) {
     user.blogs = user.blogs.concat(savedBlog._id)
     await user.save()
   }
-  response.status(201).json(savedBlog)
+
+  response.status(201).json(populatedBlog) // Send the populated blog as the response
 })
 
 BlogsRouter.get('/:id', async (request, response) => {
